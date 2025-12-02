@@ -1,5 +1,5 @@
 @Workspace
-Feature: Clockify
+Feature: Clockify Workspace
 
   Background:
     Given base url https://api.clockify.me/api

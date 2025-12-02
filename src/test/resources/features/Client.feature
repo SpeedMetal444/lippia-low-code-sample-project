@@ -1,5 +1,5 @@
 @Clients
-  Feature: Client
+  Feature: Clockify Clients
 
     Background:
       Given base url https://api.clockify.me/api
@@ -23,15 +23,16 @@
       And set value "clientAutomat" of key name in body jsons/bodies/addNewClient.json
       When execute method POST
       Then the status code should be 201
+      * define idClient = $.id
       * print response
 
     @DeleteClient
     Scenario: Delete client
       Given call Client.feature@GetClientsInfo
-      And endpoint /v1/workspaces/{{idWorkspace}}/clients/
+      And endpoint /v1/workspaces/{{idWorkspace}}/{{idClient}}/
+      And response should be name = clientAutomat
       And execute method DELETE
       Then the status code should be 200
-      And response should be name = clientAutomat
       * print response
 
     @GetAClientInfo
